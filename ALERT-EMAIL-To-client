@@ -1,0 +1,13 @@
+#This search is taken from an alerts action; sends email to client email taken from lookup file (StaffUsers.csv)
+
+# search
+ * | lookup StaffUsers.csv UserID AS Username OUTPUT Email | table Username, host, Email
+ 
+ # message 
+ # Subject:
+ The alert condition for '$result.host$' '$result.Username$' on host: 
+ '$name$' was triggered.
+
+ # Body
+ It appears $result.Username$ failed to login onto $result.host$ 
+ email = $result.Email$
